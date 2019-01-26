@@ -14,8 +14,12 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class TestBase {
     protected WebDriver driver;
+
+    // page that creates object for each page
     protected Pages pages;
 
+
+//for reporting purpose
     protected static ExtentReports report;
     protected static ExtentHtmlReporter htmlReporter;
     protected static ExtentTest extentLogger;
@@ -30,6 +34,8 @@ public abstract class TestBase {
 
     @AfterMethod
     public void tearDownMethod(ITestResult result) throws IOException {
+
+        //if any test fails, it detects it and add screenshot to your report
         if (result.getStatus() == ITestResult.FAILURE) {
             String screenshotLocation = BrowserUtils.getScreenshot(result.getName());
             extentLogger.fail(result.getName());
@@ -44,15 +50,22 @@ public abstract class TestBase {
 
     @BeforeTest
     public void setUpTest() {
+        //initialize the extendReport
         report = new ExtentReports();
+        //setting the path for the report
+        //report will be generated in the current project inside folder test-output
+        //report file name is report.html
         String filePath = System.getProperty("user.dir") + "/test-output/report.html";
+        //initialize the html reporter with the path to the report
         htmlReporter = new ExtentHtmlReporter(filePath);
-
+        // We attach the html report to our report
         report.attachReporter(htmlReporter);
 
+        //add some information optional
         report.setSystemInfo("Environment", "Staging");
         report.setSystemInfo("Browser", ConfigurationReader.getProperty("browser"));
         report.setSystemInfo("OS", System.getProperty("os.name"));
+        report.setSystemInfo("Tester","Ozturk61");
         htmlReporter.config().setDocumentTitle("Prestashop Reports");
         htmlReporter.config().setReportName("Prestashop Automated Test Reports");
 //        htmlReporter.config().setTheme(Theme.DARK);
