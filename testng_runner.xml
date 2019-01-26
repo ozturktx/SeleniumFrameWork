@@ -7,10 +7,10 @@
         </packages>-->
 
         <classes>
-            <class name="com.weborders.tests.functional_tests.login.ErrorMessageValidationTest">
+            <class name="com.weborders.tests.functional_tests.order.checkPrice">
                 <methods>
-                    <exclude name="blankPassword"/>
-                    <!--<include name="blankUserName"/>-->
+                    <!--<exclude name="blankPassword"/>
+                   --> <!--<include name="blankUserName"/>-->
                 </methods>
             </class>
         </classes>
