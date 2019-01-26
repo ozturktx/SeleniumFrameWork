@@ -2,9 +2,18 @@
 <suite name="WebOrders" verbose="1">
 
     <test name="WebOrders Automated Tests">
-        <packages>
-            <package name=".*"></package>
-        </packages>
+        <!--<packages>
+            <package name="com.weborders.tests.functional_tests.order"></package>
+        </packages>-->
+
+        <classes>
+            <class name="com.weborders.tests.functional_tests.login.ErrorMessageValidationTest">
+                <methods>
+                    <exclude name="blankPassword"/>
+                    <!--<include name="blankUserName"/>-->
+                </methods>
+            </class>
+        </classes>
     </test>
 
 </suite>
